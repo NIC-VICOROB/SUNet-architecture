@@ -139,7 +139,9 @@ def run_crossvalidation(config):
 
         samples_eval = dataset.val if config.dataset.evaluation_set is 'val' else dataset.test
         metrics_fold = evaluate_samples(
-            config, model, samples_eval, save_probabilities=config.eval.save_probabilities)
+            config, model, samples_eval,
+            save_probabilities=config.eval.save_probabilities,
+            save_segmentations=config.eval.save_segmentations)
 
         #Save metrics_fold
         case_ids_all += [s.id for s in samples_eval]

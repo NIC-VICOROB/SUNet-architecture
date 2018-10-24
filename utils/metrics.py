@@ -7,8 +7,7 @@ import math
 import itertools as it
 
 from scipy import ndimage
-from scipy.spatial.distance import directed_hausdorff
-from medpy.metric.binary import hd as haussdorf_dist
+from utils.medpy_hausdorff import hd as haussdorf_dist
 
 import copy
 import nibabel as nib
@@ -83,8 +82,9 @@ def compute_segmentation_metrics(y_true, y_pred, lesion=False, exclude=None):
 
     # Haussdorf distance
     try:
-        metrics['hd'] = haussdorf_dist(y_pred, y_true, connectivity=3)  # Why connectivity 3?
-    except Exception:
+        metrics['hd'] = haussdorf_dist(y_pred.astype(np.float32), y_true.astype(np.float32), connectivity=3)  # Why connectivity 3?
+    except Exception as e:
+        print(e)
         metrics['hd'] = np.nan
 
     if exclude is not None:
