@@ -1,0 +1,5 @@
+*.pyc
+.fuse*
+*.h5
+
+.idea/
