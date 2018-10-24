@@ -22,5 +22,5 @@ pip install -r requirements.txt
 `python main.py`.
 
 5. Interpreting the results:
-··* The resulting probability maps and binary segmentations can be found in each dataset folder inside the `results` folder.
-··* The evaluation metrics csv can be found in the `metrics` folder.
+   * The resulting probability maps and binary segmentations can be found in each dataset folder inside the `results` folder.
+   * The evaluation metrics csv can be found in the `metrics` folder.
