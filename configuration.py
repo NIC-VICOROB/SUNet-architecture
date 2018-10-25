@@ -8,7 +8,7 @@ class TrainConfiguration:
     def __init__(self):
         # GPU management
         self.cuda_device_id = 0
-        self.dynamic_gpu_memory = True
+        self.dynamic_gpu_memory = False
 
         # Basic
         self.num_classes = 2
@@ -48,7 +48,7 @@ class EvaluationConfiguration:
         self.evaluation_type = 'multi'  # multi, crossval, eval, metrics, metrics_search, debug, test
 
         # Val or test
-        self.save_probabilities = True
+        self.save_probabilities = False
         self.save_segmentations = True
 
         # Crossval
@@ -104,8 +104,8 @@ Mandatory fields for architecture entry:
 architecture_dict = {
     '2Dunet': {
         'num_dimensions': 2,
-        'patch_shape': (48, 48, 1),  # 16,16,1 or 32,32,1 or 48,48,1
-        'output_shape': (48, 48, 1)  #
+        'patch_shape': (48, 48, 1),
+        'output_shape': (48, 48, 1)
     },
     '3Dunet': {
         'num_dimensions' : 3,
@@ -114,13 +114,13 @@ architecture_dict = {
     },
     '3Duresnet': {
         'num_dimensions' : 3,
-        'patch_shape': (24, 24, 8),  # 8
-        'output_shape': (24, 24, 8)  # 8
+        'patch_shape': (24, 24, 8),
+        'output_shape': (24, 24, 8)
     },
     'SUNETx4': {
         'num_dimensions' : 3,
-        'patch_shape': (24, 24, 8),  # 8
-        'output_shape': (24, 24, 8),  # 8
+        'patch_shape': (24, 24, 8),
+        'output_shape': (24, 24, 8),
         'dropout_rate': 0.2,
         'base_filters': 32
     },
@@ -136,7 +136,7 @@ Mandatory fields!
 
 dataset_dict = {  # Each dataset uses its own configuration keys, no need to preserve consistency
     'ISLES15_SISS': {
-        'path': '~/datasets/ISLES/ISLES2015_SISS/',
+        'path': '/path/to/SISS/dataset/',
         'lesion_metrics': False,
         'evaluation_set': 'val',
         'validation_split': 0.2,
@@ -147,7 +147,7 @@ dataset_dict = {  # Each dataset uses its own configuration keys, no need to pre
         'modalities': ['Flair', 'T1', 'T2', 'DWI'],
     },
     'ISLES15_SPES': {
-        'path': '~/datasets/ISLES/ISLES2015_SPES/',
+        'path': '/path/to/SPES/dataset/',
         'lesion_metrics': False,
         'evaluation_set': 'val',
         'validation_split': 0.2,
@@ -158,7 +158,7 @@ dataset_dict = {  # Each dataset uses its own configuration keys, no need to pre
         'modalities': ['DWI', 'CBF', 'CBV', 'T1c', 'T2', 'Tmax', 'TTP'],
     },
     'ISLES2017': {
-        'path': '~/datasets/ISLES/ISLES2017_vanilla/',
+        'path': '/path/to/ISLES2017/dataset/',
         'lesion_metrics': False,
         'validation_split': 0.2,
         'lesion_threshold': 0.2,
@@ -246,6 +246,9 @@ class Configuration:
 
         # Other operations
         self.dataset.path = os.path.expanduser(self.dataset.path)
+        if self.dataset.path[-1] is not '/':
+            self.dataset.path += '/'
+
         if self.arch.num_dimensions is 2:
             assert all([shape[-1] == 1 for key, shape in self.arch.items() if 'shape' in key])
 

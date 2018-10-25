@@ -11,7 +11,7 @@ config = Configuration()
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"   # see issue #152
 os.environ["CUDA_VISIBLE_DEVICES"] = str(config.train.cuda_device_id) #str(config.train.cuda_device_id[socket.gethostname()])
-os.environ["TF_CPP_MIN_LOG_LEVEL"]="2" # Silence tensorflow initialization messages
+#os.environ["TF_CPP_MIN_LOG_LEVEL"]="2" # Silence tensorflow initialization messages
 
 from workflow.evaluate import *
 

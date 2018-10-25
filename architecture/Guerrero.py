@@ -76,10 +76,14 @@ def get_res_conv_core(dimension, input, num_filters) :
 
     if dimension == 2 :
         a = Conv2D(num_filters, kernel_size=kernel_size_a, padding='same')(input)
+        a = BatchNormalization(axis=1)(a)
         b = Conv2D(num_filters, kernel_size=kernel_size_b, padding='same')(input)
+        b = BatchNormalization(axis=1)(b)
     else :
         a = Conv3D(num_filters, kernel_size=kernel_size_a, padding='same')(input)
+        a = BatchNormalization(axis=1)(a)
         b = Conv3D(num_filters, kernel_size=kernel_size_b, padding='same')(input)
+        b = BatchNormalization(axis=1)(b)
 
     c = add([a, b])
     c = BatchNormalization(axis=1)(c)
