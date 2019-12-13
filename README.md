@@ -1,5 +1,6 @@
-# SUNet: a deep learning architecture for acute stroke lesion segmentation and outcome prediction in multimodal MRI
+# (DEPRECATED) updated version at (https://github.com/NIC-VICOROB/stroke-core-ct-segmentation)
 
+## (DEPRECATED) SUNet: a deep learning architecture for acute stroke lesion segmentation and outcome prediction in multimodal MRI
 Development framework for evaluation of deep learning architectures in the paper (https://arxiv.org/abs/1810.13304)
 
 ## Installation
