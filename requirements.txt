@@ -7,7 +7,7 @@ h5py==2.7.1
 scipy==1.1.0
 scikit_learn==0.19.1
 opencv-python==3.4.1.15
-protobuf==3.5.1
+protobuf==3.18.3
 six==1.11.0
 tensorboard==1.8.0
 tensorflow==1.8.0
